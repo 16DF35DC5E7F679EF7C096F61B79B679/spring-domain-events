@@ -1,7 +1,7 @@
 package com.harsha.springdomainevents.domain.attendance.aggregate;
 
-import com.harsha.springdomainevents.domain.global.ClassId;
-import com.harsha.springdomainevents.domain.global.PersonId;
+import com.harsha.springdomainevents.domain.global.ids.ClassId;
+import com.harsha.springdomainevents.domain.global.ids.PersonId;
 
 public class AttendanceAggregate {
     private PersonId studentId;

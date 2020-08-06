@@ -1,4 +1,4 @@
-package com.harsha.springdomainevents.domain.global;
+package com.harsha.springdomainevents.domain.global.ids;
 
 
 public class PersonId {
@@ -6,6 +6,10 @@ public class PersonId {
 
     private PersonId(UserIdBuilder builder) {
         this.userId = IdEncoder.encode(builder.toString());
+    }
+
+    public PersonId(String userId) {
+        this.userId = userId;
     }
 
     public static class UserIdBuilder {

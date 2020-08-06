@@ -9,6 +9,9 @@ public class FeedbackProjection extends BaseProjection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "feedback_id")
+    private String feedbackId;
+
     @Column(name = "points")
     private Float points;
 
@@ -21,15 +24,9 @@ public class FeedbackProjection extends BaseProjection {
     @Column(name = "will_recommend_this_course")
     private Boolean willRecommendThisCourse;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {
-        CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE
-    })
-    @JoinColumn(name = "course_id")
-    private CourseProjection courseProjection;
+    @Column(name = "course_id")
+    private String courseId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE
-    })
-    @JoinColumn(name = "student_id")
-    private StudentProjection studentProjection;
+    @Column(name = "student_id")
+    private String studentId;
 }

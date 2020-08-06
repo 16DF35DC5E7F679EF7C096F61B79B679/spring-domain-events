@@ -1,6 +1,6 @@
 package com.harsha.springdomainevents.domain.classOfCourse;
 
-import com.harsha.springdomainevents.domain.global.CourseId;
+import com.harsha.springdomainevents.domain.global.ids.CourseId;
 
 public class ClassAggregate {
     private CourseId courseId;

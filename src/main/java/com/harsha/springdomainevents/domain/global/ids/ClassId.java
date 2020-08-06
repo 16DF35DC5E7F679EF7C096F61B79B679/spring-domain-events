@@ -1,4 +1,4 @@
-package com.harsha.springdomainevents.domain.global;
+package com.harsha.springdomainevents.domain.global.ids;
 
 public class ClassId {
     public String classId;

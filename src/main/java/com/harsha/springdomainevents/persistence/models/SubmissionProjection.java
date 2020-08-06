@@ -9,24 +9,21 @@ public class SubmissionProjection extends BaseProjection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "submissionId")
+    private String submissionId;
+
     @Column(name = "public_url")
     private String publicUrl;
 
     @Column(name = "is_downloadable")
     private Integer isDownloadable;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE
-    })
-    @JoinColumn(name = "assignment_id")
-    private AssignmentProjection assignmentProjection;
+    @Column(name = "assignment_id")
+    private String assignmentId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE
-    })
-    @JoinColumn(name = "student_id")
-    private StudentProjection studentProjection;
+    @Column(name = "student_id")
+    private String studentProjection;
 
-    @OneToOne(mappedBy = "submissionProjection")
-    private EvaluationProjection evaluationProjection;
+    @Column(name = "evaluation_id")
+    private String evaluationId;
 }

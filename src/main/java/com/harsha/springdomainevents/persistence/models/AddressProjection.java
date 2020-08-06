@@ -13,6 +13,9 @@ public class AddressProjection extends BaseProjection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "address_id")
+    private String addressId;
+
     @Column(name = "traditional_address")
     private String traditionalAddress;
 
@@ -28,9 +31,7 @@ public class AddressProjection extends BaseProjection {
     @Column(name = "zip_code")
     private String zipCode;
 
-    @OneToOne
-    @JoinColumn(name = "teacher_id")
-    @JsonBackReference
-    TeacherProjection teacherProjection;
+    @Column(name = "teacher_email")
+    private String teacherEmail;
 
 }

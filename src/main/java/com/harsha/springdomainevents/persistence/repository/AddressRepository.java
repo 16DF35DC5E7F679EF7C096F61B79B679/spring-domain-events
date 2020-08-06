@@ -4,6 +4,9 @@ import com.harsha.springdomainevents.persistence.models.AddressProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface AddressRepository extends JpaRepository<AddressProjection, Long> {
+    Optional<AddressProjection> findByAddressId(String addressId);
 }

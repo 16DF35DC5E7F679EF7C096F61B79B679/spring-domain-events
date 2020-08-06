@@ -1,4 +1,4 @@
-package com.harsha.springdomainevents.domain.global;
+package com.harsha.springdomainevents.domain.global.ids;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

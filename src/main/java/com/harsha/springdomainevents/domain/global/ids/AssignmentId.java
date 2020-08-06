@@ -1,4 +1,4 @@
-package com.harsha.springdomainevents.domain.global;
+package com.harsha.springdomainevents.domain.global.ids;
 
 public class AssignmentId {
     public String assignmentId;
@@ -9,18 +9,17 @@ public class AssignmentId {
 
     public static class AssignmentIdBuilder {
         private String title;
-        private String description;
+        private String courseId;
         private Float totalMarks;
         private Long postedOn;
-        private Long dueDate;
 
         public AssignmentIdBuilder title(String title) {
             this.title = title;
             return this;
         }
 
-        public AssignmentIdBuilder description(String description) {
-            this.description = description;
+        public AssignmentIdBuilder courseId(String courseId) {
+            this.courseId = courseId;
             return this;
         }
 
@@ -34,11 +33,6 @@ public class AssignmentId {
             return this;
         }
 
-        public AssignmentIdBuilder dueDate(Long dueDate) {
-            this.dueDate = dueDate;
-            return this;
-        }
-
         public AssignmentId build() {
             return new AssignmentId(this);
         }
@@ -47,10 +41,9 @@ public class AssignmentId {
         public String toString() {
             return "Builder{" +
                     "title='" + title + '\'' +
-                    ", description='" + description + '\'' +
+                    ", courseId='" + courseId + '\'' +
                     ", totalMarks=" + totalMarks +
                     ", postedOn=" + postedOn +
-                    ", dueDate=" + dueDate +
                     '}';
         }
     }

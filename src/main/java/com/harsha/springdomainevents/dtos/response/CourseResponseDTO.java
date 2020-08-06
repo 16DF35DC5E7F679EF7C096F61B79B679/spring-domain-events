@@ -4,17 +4,19 @@ public class CourseResponseDTO {
 
     String title;
     String description;
-    String teacherEmail;
+    String teacherId;
     String courseCode;
     Long startDate;
     Long endDate;
+    String courseId;
 
-    public CourseResponseDTO(String title, String description, String teacherEmail, Long startDate, Long endDate, String courseCode) {
+    public CourseResponseDTO(String title, String description, String teacherId, Long startDate, Long endDate, String courseCode, String courseId) {
         this.title = title;
         this.description = description;
-        this.teacherEmail = teacherEmail;
+        this.teacherId = teacherId;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.courseId = courseId;
         this.courseCode = courseCode;
     }
 
@@ -26,8 +28,8 @@ public class CourseResponseDTO {
         return description;
     }
 
-    public String getTeacherEmail() {
-        return teacherEmail;
+    public String getTeacherId() {
+        return teacherId;
     }
 
     public Long getStartDate() {
@@ -40,5 +42,9 @@ public class CourseResponseDTO {
 
     public String getCourseCode() {
         return courseCode;
+    }
+
+    public String getCourseId() {
+        return courseId;
     }
 }

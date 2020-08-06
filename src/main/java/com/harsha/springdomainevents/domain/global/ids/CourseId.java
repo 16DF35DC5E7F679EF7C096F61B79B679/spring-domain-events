@@ -1,4 +1,4 @@
-package com.harsha.springdomainevents.domain.global;
+package com.harsha.springdomainevents.domain.global.ids;
 
 public class CourseId {
 
@@ -8,10 +8,14 @@ public class CourseId {
         this.courseId = IdEncoder.encode(builder.toString());
     }
 
+    public CourseId(String courseId) {
+        this.courseId = courseId;
+    }
+
     public static class CourseIdBuilder {
         private String courseDescription;
         private String courseTitle;
-        private String teacherEmail;
+        private String teacherId;
 
 
         public CourseIdBuilder courseDescription(String courseDescription) {
@@ -24,8 +28,8 @@ public class CourseId {
             return this;
         }
 
-        public CourseIdBuilder teacherEmail(String teacherEmail) {
-            this.teacherEmail = teacherEmail;
+        public CourseIdBuilder teacherId(String teacherId) {
+            this.teacherId = teacherId;
             return this;
         }
 
@@ -39,7 +43,7 @@ public class CourseId {
             return "Builder{" +
                     "courseDescription='" + courseDescription + '\'' +
                     ", courseTitle='" + courseTitle + '\'' +
-                    ", teacherEmail='" + teacherEmail + '\'' +
+                    ", teacherId'" + teacherId + '\'' +
                     '}';
         }
     }

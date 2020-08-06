@@ -9,13 +9,12 @@ public class AttendanceProjection extends BaseProjection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private StudentProjection studentProjection;
+    @Column(name = "attendance_id")
+    private String attendanceId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE
-    })
-    @JoinColumn(name = "class_id")
-    private ClassProjection classProjection;
+    @Column(name = "student_id")
+    private String studentId;
+
+    @Column(name = "class_id")
+    private String classId;
 }

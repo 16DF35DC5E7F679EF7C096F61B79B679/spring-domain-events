@@ -4,12 +4,14 @@ class BasicInfoVO {
     private String name;
     private String contact;
     private String email;
+    private Long dob;
     private String fathersName;
     private String mothersName;
     private String fathersContact;
     private String mothersContact;
 
-    public BasicInfoVO(String name, String contact, String email, String fathersName, String mothersName, String fathersContact, String mothersContact) {
+    public BasicInfoVO(String name, String contact, String email, String fathersName, String mothersName,
+                       String fathersContact, String mothersContact, Long dob) {
         this.name = name;
         this.contact = contact;
         this.email = email;
@@ -17,6 +19,7 @@ class BasicInfoVO {
         this.mothersName = mothersName;
         this.fathersContact = fathersContact;
         this.mothersContact = mothersContact;
+        this.dob = dob;
     }
 
     public String getName() {
@@ -45,5 +48,9 @@ class BasicInfoVO {
 
     public String getMothersContact() {
         return mothersContact;
+    }
+
+    public Long getDob() {
+        return this.dob;
     }
 }

@@ -1,6 +1,7 @@
 package com.harsha.springdomainevents.domain.course.aggregate;
 
 class CourseRootEntity {
+    private Long id;
     private String title;
     private String description;
     private Float credits;
@@ -8,13 +9,14 @@ class CourseRootEntity {
     private Long courseEndDate;
     private String courseCode;
 
-    CourseRootEntity(String title, String description, Float credits, Long courseStartDate, Long courseEndDate, String courseCode) {
+    CourseRootEntity(String title, String description, Float credits, Long courseStartDate, Long courseEndDate, String courseCode, Long id) {
         this.title = title;
         this.description = description;
         this.credits = credits;
         this.courseStartDate = courseStartDate;
         this.courseEndDate = courseEndDate;
         this.courseCode = courseCode;
+        this.id = id;
     }
 
     String getTitle() {
@@ -39,5 +41,9 @@ class CourseRootEntity {
 
     String getCourseCode() {
         return courseCode;
+    }
+
+    Long getId() {
+        return id;
     }
 }

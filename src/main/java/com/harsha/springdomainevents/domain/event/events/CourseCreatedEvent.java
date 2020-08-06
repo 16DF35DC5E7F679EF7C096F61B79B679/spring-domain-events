@@ -14,12 +14,12 @@ public class CourseCreatedEvent extends ApplicationEvent {
 
     public CourseCreatedEvent(CourseAggregate source) {
         super(source);
-        this.courseId = source.getCourseId().courseId;
+        this.courseId = source.getCourseId();
         this.courseName = source.getTitle();
         this.credits = source.getCredits();
         this.startDate = source.getStartDate();
         this.endDate = source.getEndDate();
-        this.teacherEmail = source.getTeacherEmail();
+        this.teacherEmail = source.getTeacherId();
     }
 
     public String getCourseId() {

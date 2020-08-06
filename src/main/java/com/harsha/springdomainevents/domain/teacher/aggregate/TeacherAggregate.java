@@ -1,8 +1,11 @@
 package com.harsha.springdomainevents.domain.teacher.aggregate;
 
 
+import com.harsha.springdomainevents.domain.global.ids.PersonId;
+
 public class TeacherAggregate {
     private TeacherRootEntity teacherRootEntity;
+    private PersonId teacherId;
 
     private TeacherAggregate(UserAggregateBuilder builder) {
         AddressEntity addressEntity = new AddressEntity(
@@ -16,6 +19,16 @@ public class TeacherAggregate {
                 builder.email,
                 addressEntity
         );
+        if(builder.teacherId!=null) {
+            this.teacherId = builder.teacherId;
+        } else {
+            this.teacherId = new PersonId.UserIdBuilder().
+                    name(builder.name)
+                    .contact(builder.contact)
+                    .email(builder.email)
+                    .dob(builder.dob)
+                    .build();
+        }
     }
 
     public static class UserAggregateBuilder {
@@ -29,6 +42,13 @@ public class TeacherAggregate {
         String state;
         String country;
         String zipCode;
+
+        public UserAggregateBuilder teacherId(PersonId teacherId) {
+            this.teacherId = teacherId;
+            return this;
+        }
+
+        PersonId teacherId;
 
         public UserAggregateBuilder name(String name) {
             this.name = name;
@@ -103,5 +123,9 @@ public class TeacherAggregate {
 
     public String getSecondaryContact() {
         return teacherRootEntity.getSecondaryContact();
+    }
+
+    public String getTeacherId() {
+        return this.teacherId.userId;
     }
 }

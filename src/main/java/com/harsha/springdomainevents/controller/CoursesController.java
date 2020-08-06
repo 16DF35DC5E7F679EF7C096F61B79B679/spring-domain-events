@@ -3,11 +3,13 @@ package com.harsha.springdomainevents.controller;
 import com.harsha.springdomainevents.domain.course.service.CoursesService;
 import com.harsha.springdomainevents.dtos.request.CreateCourseRequestDTO;
 import com.harsha.springdomainevents.dtos.response.CourseResponseDTO;
+import com.harsha.springdomainevents.dtos.response.StudentResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Validator;
+import java.util.List;
 
 @RestController
 @RequestMapping("/course")
@@ -32,5 +34,10 @@ public class CoursesController {
     @GetMapping(value = "/test")
     public ResponseEntity<String> test() {
         return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{courseId}/students")
+    public ResponseEntity<List<String>> getStudentsInCourse(@PathVariable  String courseId) {
+        return new ResponseEntity<>(coursesService.getStudentsForCourse(courseId), HttpStatus.OK);
     }
 }

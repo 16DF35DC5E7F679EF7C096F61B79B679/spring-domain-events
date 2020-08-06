@@ -1,7 +1,7 @@
 package com.harsha.springdomainevents.domain.grade.aggregate;
 
-import com.harsha.springdomainevents.domain.global.CourseId;
-import com.harsha.springdomainevents.domain.global.PersonId;
+import com.harsha.springdomainevents.domain.global.ids.CourseId;
+import com.harsha.springdomainevents.domain.global.ids.PersonId;
 
 public class GradeAggregate {
     private CourseId courseId;

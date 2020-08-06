@@ -11,19 +11,15 @@ public class GradeProjection extends BaseProjection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "grade_id")
+    private String gradeId;
+
     @Column(name = "grade")
     private Double grade;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE
-    })
-    @JoinColumn(name = "student_id")
-    StudentProjection studentProjection;
+    @Column(name = "student_id")
+    private String studentId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE
-    })
-    @JoinColumn(name = "course_id")
-    @JsonBackReference
-    CourseProjection courseProjection;
+    @Column(name = "course_id")
+    private String courseId;
 }

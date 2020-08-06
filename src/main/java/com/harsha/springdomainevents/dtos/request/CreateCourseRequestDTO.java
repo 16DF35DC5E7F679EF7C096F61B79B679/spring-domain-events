@@ -1,7 +1,7 @@
 package com.harsha.springdomainevents.dtos.request;
 
 public class CreateCourseRequestDTO {
-    private String teacherEmail;
+    private String teacherId;
     private Long startDate;
     private Long endDate;
     private String title;
@@ -9,12 +9,12 @@ public class CreateCourseRequestDTO {
     private Float credits;
     private String courseCode;
 
-    public String getTeacherEmail() {
-        return teacherEmail;
+    public String getTeacherId() {
+        return teacherId;
     }
 
-    public CreateCourseRequestDTO setTeacherEmail(String teacherEmail) {
-        this.teacherEmail = teacherEmail;
+    public CreateCourseRequestDTO setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
         return this;
     }
 

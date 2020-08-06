@@ -1,15 +1,21 @@
 package com.harsha.springdomainevents.persistence.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "student")
+@Table(name = "student", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
+@Data
 public class StudentProjection extends BaseProjection {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "student_id")
+    private String studentId;
 
     @Column(name = "name")
     private String name;
@@ -38,15 +44,21 @@ public class StudentProjection extends BaseProjection {
     @Column(name = "overall_grade")
     private Double overallGrade;
 
-    @OneToMany(mappedBy = "studentProjection")
-    private List<AttendanceProjection> attendanceProjection;
+    @Column(name = "total_credits")
+    private Double totalCredits;
 
-    @OneToMany(mappedBy = "studentProjection")
-    private List<GradeProjection> gradeProjections;
+    @ElementCollection
+    private List<String> courseIds;
 
-    @OneToMany(mappedBy = "studentProjection")
-    private List<FeedbackProjection> feedbackProjections;
+    @ElementCollection
+    private List<String> attendanceIds;
 
-    @OneToMany(mappedBy = "studentProjection")
-    private List<SubmissionProjection> submissionProjections;
+    @ElementCollection
+    private List<String> gradeIds;
+
+    @ElementCollection
+    private List<String> feedbackIds;
+
+    @ElementCollection
+    private List<String> submissionIds;
 }

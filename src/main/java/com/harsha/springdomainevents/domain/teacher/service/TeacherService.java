@@ -41,7 +41,7 @@ public class TeacherService {
 
     private TeacherResponseDTO convertAggregateToResponseDTO(TeacherAggregate teacherAggregate){
         return new TeacherResponseDTO(
-                teacherAggregate.getName(), teacherAggregate.getEmail(), teacherAggregate.getContact(),
+                teacherAggregate.getTeacherId(), teacherAggregate.getName(), teacherAggregate.getEmail(), teacherAggregate.getContact(),
                 teacherAggregate.getSecondaryContact(), teacherAggregate.getDob().toString()
                 );
     }

@@ -15,6 +15,9 @@ public class CourseProjection extends BaseProjection{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "course_id")
+    String courseId;
+
     @Column(name = "course_code")
     String courseCode;
 
@@ -33,22 +36,20 @@ public class CourseProjection extends BaseProjection{
     @Column(name = "credits")
     private Double credits;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH
-    })
-    @JoinTable(name = "course_student_map",
-                joinColumns = @JoinColumn(name = "course_id"),
-                inverseJoinColumns = @JoinColumn(name = "student_id"))
-    private List<StudentProjection> students;
+    @Column(name = "teacher_id")
+    private String teacherId;
 
-    @OneToMany(mappedBy = "courseProjection")
-    private List<AssignmentProjection> assignmentProjections;
+    @ElementCollection
+    private List<String> studentIds;
 
-    @OneToMany(mappedBy = "courseProjection")
-    private List<ClassProjection> classProjections;
+    @ElementCollection
+    private List<String> assignmentIds;
 
-    @OneToMany(mappedBy = "courseProjection")
-    private List<FeedbackProjection> feedbackProjections;
+    @ElementCollection
+    private List<String> classIds;
+
+    @ElementCollection
+    private List<String> feedbackIds;
 
     public CourseProjection() {
 

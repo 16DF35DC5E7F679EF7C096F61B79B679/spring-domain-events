@@ -10,6 +10,9 @@ public class AssignmentProjection extends BaseProjection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "assignment_id")
+    private String assignmentId;
+
     @Column(name = "title")
     private String title;
 
@@ -22,12 +25,10 @@ public class AssignmentProjection extends BaseProjection {
     @Column(name = "total_marks")
     private Float totalMarks;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE
-    })
-    @JoinColumn(name = "course_id")
-    private CourseProjection courseProjection;
 
-    @OneToMany(mappedBy = "assignmentProjection")
-    private List<SubmissionProjection> submissionProjections;
+    @Column(name = "course_code")
+    private String courseCode;
+
+    @ElementCollection
+    private List<String> submissionIds;
 }

@@ -1,7 +1,7 @@
 package com.harsha.springdomainevents.domain.submission.aggregate;
 
-import com.harsha.springdomainevents.domain.global.AssignmentId;
-import com.harsha.springdomainevents.domain.global.PersonId;
+import com.harsha.springdomainevents.domain.global.ids.AssignmentId;
+import com.harsha.springdomainevents.domain.global.ids.PersonId;
 
 public class SubmissionAggregate {
     private AssignmentId assignmentId;

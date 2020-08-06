@@ -9,10 +9,10 @@ public class EvaluationProjection extends BaseProjection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE
-    })
-    @JoinColumn(name = "submission_id")
-    SubmissionProjection submissionProjection;
+    @Column(name = "evaluation_id")
+    private String evaluationId;
+
+    @Column(name = "submission_id")
+    private String submissionId;
 
 }

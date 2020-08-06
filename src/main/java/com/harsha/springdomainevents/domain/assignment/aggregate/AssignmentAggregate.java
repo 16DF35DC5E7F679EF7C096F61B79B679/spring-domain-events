@@ -1,11 +1,13 @@
 package com.harsha.springdomainevents.domain.assignment.aggregate;
 
-import com.harsha.springdomainevents.domain.global.CourseId;
+import com.harsha.springdomainevents.domain.global.ids.AssignmentId;
+import com.harsha.springdomainevents.domain.global.ids.CourseId;
 
 public class AssignmentAggregate {
 
     private final AssignmentRootEntity assignmentRootEntity;
     private final CourseId courseId;
+    private final AssignmentId assignmentId;
 
     private AssignmentAggregate(AssignmentAggregateBuilder assignmentAggregateBuilder) {
         this.assignmentRootEntity = new AssignmentRootEntity(
@@ -14,6 +16,12 @@ public class AssignmentAggregate {
         );
         this.courseId = new CourseId.CourseIdBuilder().courseDescription(assignmentAggregateBuilder.courseDescription)
                 .courseTitle(assignmentAggregateBuilder.courseTitle).build();
+        this.assignmentId = new AssignmentId.AssignmentIdBuilder()
+                .courseId(this.courseId.courseId)
+                .postedOn(assignmentAggregateBuilder.postedOn)
+                .title(assignmentAggregateBuilder.courseTitle)
+                .totalMarks(assignmentAggregateBuilder.totalMarks)
+                .build();
     }
 
     public static class AssignmentAggregateBuilder {

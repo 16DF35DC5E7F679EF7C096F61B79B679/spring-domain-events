@@ -9,17 +9,14 @@ public class ClassProjection extends BaseProjection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE
-    })
-    @JoinColumn(name = "course_id")
-    private CourseProjection courseProjection;
+    @Column(name = "class_id")
+    private String classId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE
-    })
-    @JoinColumn(name = "class_location_id")
-    private ClassLocationProjection classLocationProjection;
+    @Column(name = "course_id")
+    private String courseId;
+
+    @Column(name = "class_location_id")
+    private String classLocationId;
 
     @Column(name = "day")
     private String day;

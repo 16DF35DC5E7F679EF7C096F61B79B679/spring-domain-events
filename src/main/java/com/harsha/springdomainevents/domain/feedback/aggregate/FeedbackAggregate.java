@@ -1,9 +1,11 @@
 package com.harsha.springdomainevents.domain.feedback.aggregate;
 
-import com.harsha.springdomainevents.domain.global.CourseId;
-import com.harsha.springdomainevents.domain.global.PersonId;
+import com.harsha.springdomainevents.domain.global.ids.CourseId;
+import com.harsha.springdomainevents.domain.global.ids.FeedbackId;
+import com.harsha.springdomainevents.domain.global.ids.PersonId;
 
 public class FeedbackAggregate {
+    private FeedbackId feedbackId;
     private CourseId courseId;
     private PersonId studentId;
     private Float points;
