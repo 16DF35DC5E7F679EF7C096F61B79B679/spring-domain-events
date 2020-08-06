@@ -22,7 +22,11 @@ public class CourseAggregate {
                 .courseTitle(getTitle())
                 .courseDescription(getDescription())
                 .build();
-        this.studentIds = builder.studentIds;
+        if(builder.studentIds!=null){
+            this.studentIds = builder.studentIds;
+        } else {
+            this.studentIds = new ArrayList<>();
+        }
     }
 
     public static class CourseAggregateBuilder {
@@ -89,7 +93,9 @@ public class CourseAggregate {
     }
 
     public CourseAggregate addStudent(PersonId studentId) {
-        this.studentIds.add(studentId);
+        if(!this.studentIds.contains(studentId)) {
+            this.studentIds.add(studentId);
+        }
         return this;
     }
 

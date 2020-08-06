@@ -21,12 +21,16 @@ public class StudentAggregate {
 
         AcademicInfoVO academicInfoVO = new AcademicInfoVO(builder.overallGrade, builder.totalCredits);
         this.studentRootEntity = new StudentRootEntity(builder.id, basicInfoVO, academicInfoVO);
-        this.studentId = new PersonId.UserIdBuilder()
-                .name(builder.name)
-                .email(builder.email)
-                .contact(builder.contact)
-                .dob(builder.dob)
-                .build();
+        if(builder.studentId!=null) {
+            this.studentId = builder.studentId;
+        } else {
+            this.studentId = new PersonId.UserIdBuilder()
+                    .name(builder.name)
+                    .email(builder.email)
+                    .contact(builder.contact)
+                    .dob(builder.dob)
+                    .build();
+        }
         if(builder.courseIds!=null) {
             this.courseIds = builder.courseIds;
         } else {
@@ -51,9 +55,15 @@ public class StudentAggregate {
         private Double overallGrade;
         private Double totalCredits;
         private Long id;
+        private PersonId studentId;
 
         public StudentAggregateBuilder courseIds(List<CourseId> courseIds) {
             this.courseIds = courseIds;
+            return this;
+        }
+
+        public StudentAggregateBuilder studentId(PersonId studentId){
+            this.studentId = studentId;
             return this;
         }
 
