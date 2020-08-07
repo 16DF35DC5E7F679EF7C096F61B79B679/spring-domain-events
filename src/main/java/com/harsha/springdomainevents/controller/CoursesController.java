@@ -1,7 +1,9 @@
 package com.harsha.springdomainevents.controller;
 
 import com.harsha.springdomainevents.domain.course.service.CoursesService;
+import com.harsha.springdomainevents.dtos.request.CreateAssignmentRequestDTO;
 import com.harsha.springdomainevents.dtos.request.CreateCourseRequestDTO;
+import com.harsha.springdomainevents.dtos.response.AssignmentResponseDTO;
 import com.harsha.springdomainevents.dtos.response.CourseResponseDTO;
 import com.harsha.springdomainevents.dtos.response.StudentResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +41,10 @@ public class CoursesController {
     @GetMapping(value = "/{courseId}/students")
     public ResponseEntity<List<String>> getStudentsInCourse(@PathVariable  String courseId) {
         return new ResponseEntity<>(coursesService.getStudentsForCourse(courseId), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/{id}/assignment")
+    public ResponseEntity<AssignmentResponseDTO> addAssignment(@PathVariable String id, @RequestBody CreateAssignmentRequestDTO createAssignmentRequestDTO) {
+        return new ResponseEntity<>(coursesService.addAssignment(id, createAssignmentRequestDTO), HttpStatus.CREATED);
     }
 }

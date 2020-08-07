@@ -33,8 +33,9 @@ public class TeacherProjection extends BaseProjection {
     @Column(name = "dob")
     private Date dob;
 
-    @Column(name = "address_id")
-    private String addressId;
+    @OneToOne(mappedBy = "teacherProjection", fetch = FetchType.LAZY,
+            cascade = {CascadeType.ALL})
+    private AddressProjection addressProjection;
 
     @ElementCollection
     private List<String> courseIds;

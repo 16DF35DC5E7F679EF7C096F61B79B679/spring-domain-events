@@ -1,5 +1,6 @@
 package com.harsha.springdomainevents.domain.course.aggregate;
 
+import com.harsha.springdomainevents.domain.global.ids.AssignmentId;
 import com.harsha.springdomainevents.domain.global.ids.CourseId;
 import com.harsha.springdomainevents.domain.global.ids.PersonId;
 
@@ -12,6 +13,7 @@ public class CourseAggregate {
     private PersonId teacherId;
     private CourseId courseId;
     private List<PersonId> studentIds;
+    private List<AssignmentId> assignmentIds;
 
     private CourseAggregate(CourseAggregateBuilder builder) {
         this.courseRootEntity = new CourseRootEntity(builder.title, builder.description,
@@ -22,14 +24,16 @@ public class CourseAggregate {
                 .courseTitle(getTitle())
                 .courseDescription(getDescription())
                 .build();
-        if(builder.studentIds!=null){
-            this.studentIds = builder.studentIds;
-        } else {
-            this.studentIds = new ArrayList<>();
-        }
+//        if(builder.studentIds!=null){
+        this.studentIds = builder.studentIds;
+        this.assignmentIds = builder.assignmentIds;
+//        } else {
+//            this.studentIds = new ArrayList<>();
+//        }
     }
 
     public static class CourseAggregateBuilder {
+        private Long id;
         private String title;
         private String description;
         private Float credits;
@@ -37,20 +41,23 @@ public class CourseAggregate {
         private Long courseEndDate;
         private String courseCode;
         private PersonId teacherId;
+        private List<PersonId> studentIds;
+        private List<AssignmentId> assignmentIds;
+
+        public CourseAggregateBuilder assignmentIds(List<AssignmentId> assignmentIds) {
+            this.assignmentIds = assignmentIds;
+            return this;
+        }
 
         public CourseAggregateBuilder id(Long id) {
             this.id = id;
             return this;
         }
 
-        private Long id;
-
         public CourseAggregateBuilder studentIds(List<PersonId> studentIds) {
             this.studentIds = studentIds;
             return this;
         }
-
-        private List<PersonId> studentIds;
 
         public CourseAggregateBuilder courseStartDate(Long courseStartDate) {
             this.courseStartDate = courseStartDate;
@@ -93,6 +100,9 @@ public class CourseAggregate {
     }
 
     public CourseAggregate addStudent(PersonId studentId) {
+        if(this.studentIds==null) {
+            this.studentIds = new ArrayList<>();
+        }
         if(!this.studentIds.contains(studentId)) {
             this.studentIds.add(studentId);
         }
@@ -140,5 +150,15 @@ public class CourseAggregate {
             return new ArrayList<>();
         }
         return this.studentIds.stream().map(studentId -> studentId.userId).collect(Collectors.toList());
+    }
+
+    public CourseAggregate addAssignment(AssignmentId assignmentId) {
+        if(this.assignmentIds==null) {
+            this.assignmentIds = new ArrayList<>();
+        }
+        if(!this.assignmentIds.contains(assignmentId)) {
+            this.assignmentIds.add(assignmentId);
+        }
+        return this;
     }
 }

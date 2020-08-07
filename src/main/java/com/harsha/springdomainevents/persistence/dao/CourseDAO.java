@@ -1,6 +1,7 @@
 package com.harsha.springdomainevents.persistence.dao;
 
 import com.harsha.springdomainevents.domain.course.aggregate.CourseAggregate;
+import com.harsha.springdomainevents.domain.global.ids.AssignmentId;
 import com.harsha.springdomainevents.domain.global.ids.PersonId;
 import com.harsha.springdomainevents.persistence.models.CourseProjection;
 import com.harsha.springdomainevents.persistence.repository.CourseRepository;
@@ -76,6 +77,10 @@ public class CourseDAO {
         if(courseProjection.getStudentIds()!=null) {
             courseAggregateBuilder.studentIds(courseProjection.getStudentIds().stream()
             .map(PersonId::new).collect(Collectors.toList()));
+        }
+        if (courseProjection.getAssignmentIds()!=null) {
+            courseAggregateBuilder.assignmentIds(courseProjection.getAssignmentIds().stream()
+            .map(AssignmentId::new).collect(Collectors.toList()));
         }
         return courseAggregateBuilder.build();
     }

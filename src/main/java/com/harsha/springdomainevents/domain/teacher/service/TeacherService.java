@@ -2,6 +2,7 @@ package com.harsha.springdomainevents.domain.teacher.service;
 
 import com.harsha.springdomainevents.domain.event.events.TeacherCreatedEvent;
 import com.harsha.springdomainevents.domain.teacher.aggregate.TeacherAggregate;
+import com.harsha.springdomainevents.dtos.request.AddAddressRequestDTO;
 import com.harsha.springdomainevents.dtos.request.CreateTeacherRequestDTO;
 import com.harsha.springdomainevents.dtos.response.TeacherResponseDTO;
 import com.harsha.springdomainevents.persistence.dao.TeacherDAO;
@@ -40,9 +41,27 @@ public class TeacherService {
     }
 
     private TeacherResponseDTO convertAggregateToResponseDTO(TeacherAggregate teacherAggregate){
+        TeacherResponseDTO.AddressResponseDTO addressResponseDTO = new TeacherResponseDTO.AddressResponseDTO(
+                teacherAggregate.getAddressEntityId(),
+                teacherAggregate.getTraditionalAddress(),
+                teacherAggregate.getGooglePlaceId(),
+                teacherAggregate.getState(),
+                teacherAggregate.getCountry(),
+                teacherAggregate.getZipCode()
+        );
         return new TeacherResponseDTO(
                 teacherAggregate.getTeacherId(), teacherAggregate.getName(), teacherAggregate.getEmail(), teacherAggregate.getContact(),
-                teacherAggregate.getSecondaryContact(), teacherAggregate.getDob().toString()
+                teacherAggregate.getSecondaryContact(), teacherAggregate.getDob().toString(), addressResponseDTO
                 );
+    }
+
+    public TeacherResponseDTO addAddress(String id, AddAddressRequestDTO addAddressRequestDTO) {
+        TeacherAggregate teacherAggregate = teacherDAO.findByTeacherId(id);
+        TeacherAggregate updatedTeacherAggregate = teacherAggregate.updateAddress(addAddressRequestDTO.getTraditionalAddress(),
+                addAddressRequestDTO.getGooglePlaceId(),
+                addAddressRequestDTO.getState(),
+                addAddressRequestDTO.getCountry(),
+                addAddressRequestDTO.getZipCode());
+        return convertAggregateToResponseDTO(teacherDAO.save(updatedTeacherAggregate));
     }
 }

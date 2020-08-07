@@ -7,6 +7,10 @@ public class AssignmentId {
         this.assignmentId = IdEncoder.encode(builder.toString());
     }
 
+    public AssignmentId(String assignmentId) {
+        this.assignmentId = assignmentId;
+    }
+
     public static class AssignmentIdBuilder {
         private String title;
         private String courseId;

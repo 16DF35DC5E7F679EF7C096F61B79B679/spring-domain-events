@@ -2,6 +2,7 @@ package com.harsha.springdomainevents.domain.teacher.aggregate;
 
 
 import com.harsha.springdomainevents.domain.global.ids.PersonId;
+import org.springframework.util.StringUtils;
 
 public class TeacherAggregate {
     private TeacherRootEntity teacherRootEntity;
@@ -9,9 +10,10 @@ public class TeacherAggregate {
 
     private TeacherAggregate(UserAggregateBuilder builder) {
         AddressEntity addressEntity = new AddressEntity(
-                builder.traditionalAddress, builder.googlePlaceId, builder.state, builder.country, builder.zipCode
+                builder.addressEntityId, builder.traditionalAddress, builder.googlePlaceId, builder.state, builder.country, builder.zipCode
                 );
         this.teacherRootEntity = new TeacherRootEntity(
+                builder.teacherEntityId,
                 builder.name,
                 builder.dob,
                 builder.contact,
@@ -42,16 +44,28 @@ public class TeacherAggregate {
         String state;
         String country;
         String zipCode;
+        PersonId teacherId;
+        Long teacherEntityId;
+        Long addressEntityId;
+
 
         public UserAggregateBuilder teacherId(PersonId teacherId) {
             this.teacherId = teacherId;
             return this;
         }
 
-        PersonId teacherId;
-
         public UserAggregateBuilder name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public UserAggregateBuilder teacherEntityId(Long teacherEntityId) {
+            this.teacherEntityId = teacherEntityId;
+            return this;
+        }
+
+        public UserAggregateBuilder addressEntityId(Long addressEntityId) {
+            this.addressEntityId = addressEntityId;
             return this;
         }
 
@@ -105,6 +119,20 @@ public class TeacherAggregate {
         }
     }
 
+    public TeacherAggregate updateAddress(String traditionalAddress,
+            String googlePlaceId,
+            String state,
+            String country,
+            String zipCode) {
+        teacherRootEntity.setAddressEntity(new AddressEntity(null,
+                traditionalAddress,
+                googlePlaceId,
+                state,
+                country,
+                zipCode));
+        return this;
+    }
+
     public String getName() {
         return teacherRootEntity.getName();
     }
@@ -128,4 +156,37 @@ public class TeacherAggregate {
     public String getTeacherId() {
         return this.teacherId.userId;
     }
+
+    public Long getTeacherEntityId() {
+        return teacherRootEntity.getId();
+    }
+
+    public Long getAddressEntityId() {
+        return teacherRootEntity.getAddressEntity().id;
+    }
+
+    public String getTraditionalAddress() {
+        return teacherRootEntity.getAddressEntity().traditionalAddress;
+    }
+
+    public String getGooglePlaceId() {
+        return teacherRootEntity.getAddressEntity().googlePlaceId;
+    }
+
+    public String getCountry() {
+        return teacherRootEntity.getAddressEntity().country;
+    }
+
+    public String getState() {
+        return teacherRootEntity.getAddressEntity().state;
+    }
+
+    public String getZipCode() {
+        return teacherRootEntity.getAddressEntity().zipCode;
+    }
+
+    public Boolean isAddressPresent() {
+        return teacherRootEntity.getAddressEntity() != null && !StringUtils.isEmpty(teacherRootEntity.getAddressEntity().googlePlaceId);
+    }
+
 }

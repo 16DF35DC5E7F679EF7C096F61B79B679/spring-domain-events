@@ -13,9 +13,6 @@ public class AddressProjection extends BaseProjection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "address_id")
-    private String addressId;
-
     @Column(name = "traditional_address")
     private String traditionalAddress;
 
@@ -31,7 +28,9 @@ public class AddressProjection extends BaseProjection {
     @Column(name = "zip_code")
     private String zipCode;
 
-    @Column(name = "teacher_email")
-    private String teacherEmail;
+    @OneToOne(fetch = FetchType.LAZY,
+    cascade = {CascadeType.ALL})
+    @JoinColumn(name = "teacher_id")
+    private TeacherProjection teacherProjection;
 
 }

@@ -4,7 +4,9 @@ import com.harsha.springdomainevents.domain.course.aggregate.CourseAggregate;
 import com.harsha.springdomainevents.domain.event.events.CourseCreatedEvent;
 import com.harsha.springdomainevents.domain.global.ids.PersonId;
 import com.harsha.springdomainevents.domain.teacher.aggregate.TeacherAggregate;
+import com.harsha.springdomainevents.dtos.request.CreateAssignmentRequestDTO;
 import com.harsha.springdomainevents.dtos.request.CreateCourseRequestDTO;
+import com.harsha.springdomainevents.dtos.response.AssignmentResponseDTO;
 import com.harsha.springdomainevents.dtos.response.CourseResponseDTO;
 import com.harsha.springdomainevents.dtos.response.StudentResponseDTO;
 import com.harsha.springdomainevents.persistence.dao.CourseDAO;
@@ -79,5 +81,9 @@ public class CoursesService {
             return courseAggregate.getStudentIds();
         }
         return new ArrayList<>();
+    }
+
+    public AssignmentResponseDTO addAssignment(String id, CreateAssignmentRequestDTO createAssignmentRequestDTO) {
+        return null;
     }
 }

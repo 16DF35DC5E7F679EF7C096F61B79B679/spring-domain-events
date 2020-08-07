@@ -1,6 +1,7 @@
 package com.harsha.springdomainevents.domain.teacher.aggregate;
 
 class TeacherRootEntity {
+    private Long id;
     private String name;
     private Long dob;
     private AddressEntity addressEntity;
@@ -8,8 +9,9 @@ class TeacherRootEntity {
     private String secondaryContact;
     private String email;
 
-    public TeacherRootEntity(String name, Long dob, String contact, String secondaryContact, String email,
+    public TeacherRootEntity(Long id, String name, Long dob, String contact, String secondaryContact, String email,
                              AddressEntity addressEntity) {
+        this.id = id;
         this.name = name;
         this.dob = dob;
         this.contact = contact;
@@ -40,6 +42,12 @@ class TeacherRootEntity {
 
     String getEmail() {
         return email;
+    }
+
+    Long getId() {return id;}
+
+    void setAddressEntity(AddressEntity addressEntity) {
+        this.addressEntity = addressEntity;
     }
 
 }

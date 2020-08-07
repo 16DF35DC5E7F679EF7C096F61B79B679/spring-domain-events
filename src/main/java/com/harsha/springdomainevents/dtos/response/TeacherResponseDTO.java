@@ -12,4 +12,16 @@ public class TeacherResponseDTO {
     String contact;
     String secondaryContact;
     String dob;
+    AddressResponseDTO address;
+
+    @Data
+    @AllArgsConstructor
+    public static class AddressResponseDTO{
+        Long id;
+        String traditionalAddress;
+        String googlePlaceId;
+        String state;
+        String country;
+        String zipCode;
+    }
 }

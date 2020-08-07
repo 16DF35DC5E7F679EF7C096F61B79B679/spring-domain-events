@@ -1,15 +1,13 @@
 package com.harsha.springdomainevents.controller;
 
 import com.harsha.springdomainevents.domain.teacher.service.TeacherService;
+import com.harsha.springdomainevents.dtos.request.AddAddressRequestDTO;
 import com.harsha.springdomainevents.dtos.request.CreateTeacherRequestDTO;
 import com.harsha.springdomainevents.dtos.response.TeacherResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,5 +25,10 @@ public class TeacherController {
     @PostMapping(value = "")
     public ResponseEntity<TeacherResponseDTO> createTeacher(@RequestBody @Valid CreateTeacherRequestDTO createTeacherRequestDTO) {
         return new ResponseEntity<>(teacherService.createTeacher(createTeacherRequestDTO), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{id}/address")
+    public ResponseEntity<TeacherResponseDTO> addAddress(@PathVariable String id, @RequestBody @Valid AddAddressRequestDTO addAddressRequestDTO) {
+        return new ResponseEntity<>(teacherService.addAddress(id, addAddressRequestDTO), HttpStatus.CREATED);
     }
 }
